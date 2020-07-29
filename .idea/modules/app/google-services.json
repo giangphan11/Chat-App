@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1064075078785",
+    "firebase_url": "https://chat-app-2ed60.firebaseio.com",
+    "project_id": "chat-app-2ed60",
+    "storage_bucket": "chat-app-2ed60.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1064075078785:android:4af6ea2bb9306a70973180",
+        "android_client_info": {
+          "package_name": "phanbagiang.com.chatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1064075078785-bqtmlvpmjs4udhni3pqa9nbt488t0pmb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "phanbagiang.com.chatapp",
+            "certificate_hash": "d27fe108cebf83fc9ae785946fd025e4a7f40b61"
+          }
+        },
+        {
+          "client_id": "1064075078785-rg0b421mn66g65svpooi3e819p0b1ndc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCr8QoFZ2hqkTs4LoaRCB6g_6fqa9-4kYg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1064075078785-rg0b421mn66g65svpooi3e819p0b1ndc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
