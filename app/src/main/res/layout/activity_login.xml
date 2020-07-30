@@ -5,67 +5,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.RegisterActivity">
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/reg_toolbar"
-        android:layout_width="match_parent"
-        app:title="Register"
-        app:titleTextColor="#fff"
-        android:background="@color/colorPrimary"
-        android:layout_height="?android:attr/actionBarSize"/>
+    tools:context=".activities.LoginActivity">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_custom"/>
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_margin="20dp"
-        android:focusable="false"
+
         android:layout_gravity="center"
-        android:layout_width="256dp"
+        android:layout_margin="20dp"
+        android:layout_width="265dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:hint="Email"
         android:layout_height="wrap_content">
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edtName"
+            android:id="@+id/log_mail"
+            android:singleLine="true"
             android:layout_width="match_parent"
-            android:hint="Username"
             android:layout_height="match_parent"/>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_margin="20dp"
         android:layout_gravity="center"
-        android:layout_width="256dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_height="wrap_content">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edtEmail"
-            android:layout_width="match_parent"
-            android:hint="Email"
-            android:layout_height="match_parent"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-
         android:layout_margin="20dp"
-        android:layout_gravity="center"
+        android:layout_width="265dp"
         app:endIconMode="password_toggle"
-        android:layout_width="256dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:hint="Password"
         android:layout_height="wrap_content">
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edtPassWord"
-            android:layout_width="match_parent"
-            android:hint="Password"
+            android:id="@+id/log_password"
             android:inputType="textPassword"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnRegister"
-        android:text="Register"
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
+        android:id="@+id/log_btnLogin"
+        android:text="Login"
         android:layout_gravity="center"
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <ProgressBar
-        android:id="@+id/progressBar2"
+        android:id="@+id/progressBar"
         android:layout_gravity="center"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
