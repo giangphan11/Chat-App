@@ -9,18 +9,23 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import phanbagiang.com.chatapp.R;
 
 public class MainActivity extends AppCompatActivity {
+    CircleImageView imgUser;
+    TextView txtUsername;
+
     Toolbar toolbar;
     FirebaseAuth firebaseAuth;
-    FirebaseDatabase mDatabase;
+    FirebaseUser user;
     DatabaseReference mReference;
 
     private static final String TAG = "MainActivity";
@@ -37,10 +42,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private void addControls(){
-        mDatabase=FirebaseDatabase.getInstance();
-        mReference=mDatabase.getReference();
-
         firebaseAuth=FirebaseAuth.getInstance();
+        user= firebaseAuth.getCurrentUser();
+        imgUser=findViewById(R.id.imgUser);
+        txtUsername=findViewById(R.id.txtUserName);
+        txtUsername.setText(user.getDisplayName());
+        mReference=FirebaseDatabase.getInstance().getReference();
+
     }
 
     @Override

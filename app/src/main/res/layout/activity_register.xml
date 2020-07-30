@@ -6,13 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.RegisterActivity">
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/reg_toolbar"
-        android:layout_width="match_parent"
-        app:title="Register"
-        app:titleTextColor="#fff"
-        android:background="@color/colorPrimary"
-        android:layout_height="?android:attr/actionBarSize"/>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_custom"/>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_margin="20dp"
         android:focusable="false"

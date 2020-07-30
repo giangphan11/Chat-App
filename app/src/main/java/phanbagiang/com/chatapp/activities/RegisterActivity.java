@@ -17,6 +17,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -37,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        toolbar=findViewById(R.id.reg_toolbar);
+        toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         addControls();
@@ -67,7 +68,22 @@ public class RegisterActivity extends AppCompatActivity {
     private void showMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
-
+    private void updateUser(FirebaseUser user, String name){
+        UserProfileChangeRequest userProfileChangeRequest=new UserProfileChangeRequest.Builder()
+                .setDisplayName(name) // update image
+                .build();
+        user.updateProfile(userProfileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    showMessage("update profile successfully!");
+                }
+                else{
+                    showMessage(task.getException().getMessage());
+                }
+            }
+        });
+    }
     private void register(final String userName, final String mail, String pass){
         firebaseAuth.createUserWithEmailAndPassword(mail,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -75,6 +91,8 @@ public class RegisterActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     showMessage("createUserWithEmail:success");
                     FirebaseUser user=firebaseAuth.getCurrentUser();
+
+                    updateUser(user,userName);
 
                     String id=user.getUid();
                     HashMap<String,String>hashMap=new HashMap<>();
