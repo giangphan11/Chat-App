@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    app:cardCornerRadius="10dp"
+    android:elevation="4dp"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="10dp"
+    app:cardBackgroundColor="#dcdde1"
+    android:layout_width="match_parent"
+    android:layout_height="100dp">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/list_image"
+            android:layout_width="64dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp"
+            android:layout_height="64dp"/>
+        <TextView
+            android:id="@+id/list_name"
+            android:layout_gravity="center"
+            android:text="Bonz"
+            android:textSize="36dp"
+            android:layout_marginLeft="30dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:textColor="#8c7ae6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

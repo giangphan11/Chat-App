@@ -1,32 +1,48 @@
 package phanbagiang.com.chatapp.activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Adapter;
 import android.widget.TextView;
 
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 import phanbagiang.com.chatapp.R;
+import phanbagiang.com.chatapp.fragments.ChatFragment;
+import phanbagiang.com.chatapp.fragments.FriendFragment;
 
 public class MainActivity extends AppCompatActivity {
     CircleImageView imgUser;
     TextView txtUsername;
 
     Toolbar toolbar;
-    FirebaseAuth firebaseAuth;
-    FirebaseUser user;
     DatabaseReference mReference;
+
+    TabLayout tabLayout;
+    ViewPager viewPager;
+
+    ChatFragment chatFragment;
+    FriendFragment friendFragment;
 
     private static final String TAG = "MainActivity";
 
@@ -36,19 +52,67 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Main");
 
         addControls();
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+        if(user!=null){
+            txtUsername.setText(user.getDisplayName());
+        }
+    }
+
     private void addControls(){
-        firebaseAuth=FirebaseAuth.getInstance();
-        user= firebaseAuth.getCurrentUser();
+
         imgUser=findViewById(R.id.imgUser);
         txtUsername=findViewById(R.id.txtUserName);
-        txtUsername.setText(user.getDisplayName());
+
         mReference=FirebaseDatabase.getInstance().getReference();
 
+        tabLayout=findViewById(R.id.tabLayout);
+        viewPager=findViewById(R.id.viewpager);
+
+        ViewpagerAdaper adaper=new ViewpagerAdaper(getSupportFragmentManager());
+        chatFragment=new ChatFragment();
+        friendFragment=new FriendFragment();
+        adaper.addFragments(chatFragment,"Chats");
+        adaper.addFragments(friendFragment,"Users");
+        viewPager.setAdapter(adaper);
+        tabLayout.setupWithViewPager(viewPager);
+    }
+    private class ViewpagerAdaper extends FragmentPagerAdapter {
+        List<Fragment> fragments;
+        List<String>titles;
+        public ViewpagerAdaper(@NonNull FragmentManager fm) {
+            super(fm);
+            fragments=new ArrayList<>();
+            titles=new ArrayList<>();
+        }
+        public void addFragments(Fragment fragment, String title){
+            fragments.add(fragment);
+            titles.add(title);
+        }
+
+        @NonNull
+        @Override
+        public Fragment getItem(int position) {
+            return fragments.get(position);
+        }
+
+        @Nullable
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return titles.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return fragments.size();
+        }
     }
 
     @Override

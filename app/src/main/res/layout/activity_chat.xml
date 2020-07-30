@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#dcdde1"
     tools:context=".activities.MainActivity">
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbarLayout"
@@ -42,19 +43,33 @@
             </LinearLayout>
         </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_message"
         android:layout_below="@id/appbarLayout"
-        app:tabTextColor="#fff"
-        app:tabSelectedTextColor="#e1b12c"
-        app:tabIndicatorColor="#e1b12c"
-        android:background="@color/colorPrimary"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <androidx.viewpager.widget.ViewPager
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_below="@id/tabLayout"
-        android:id="@+id/viewpager"
+        android:layout_above="@id/bottom"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+    <RelativeLayout
+        android:id="@+id/bottom"
+        android:layout_alignParentBottom="true"
+        android:background="#fff"
+        android:layout_width="match_parent"
+        android:layout_margin="5dp"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/chat_sms"
+            android:layout_width="match_parent"
+            android:hint="Input your message"
+            android:background="@android:color/transparent"
+            android:layout_toLeftOf="@id/btnSend"
+            android:layout_centerHorizontal="true"
+            android:layout_height="48dp"/>
+        <ImageView
+            android:id="@+id/btnSend"
+            android:background="@drawable/ic_send_48"
+            android:layout_margin="4dp"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
 </RelativeLayout>
