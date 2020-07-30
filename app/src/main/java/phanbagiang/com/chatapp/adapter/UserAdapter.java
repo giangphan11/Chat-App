@@ -40,7 +40,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         User user=mData.get(position);
         holder.txtName.setText(user.getName());
         if(user.getImage().equals("default")){
-            holder.img.setImageResource(R.drawable.ic_launcher_background);
+            holder.img.setImageResource(R.mipmap.ic_launcher);
         }
         else{
             Glide.with(this.context)

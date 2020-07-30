@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="300dp"
+        android:padding="8dp"
+        android:layout_gravity="right"
+        android:layout_alignParentEnd="true"
+        android:layout_height="wrap_content">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/chat_left_img"
+            android:src="@mipmap/ic_launcher"
+            android:layout_width="40dp"
+            android:visibility="gone"
+            android:layout_height="40dp"/>
+        <TextView
+            android:id="@+id/txtChat"
+            android:text="Phan Bá Giang"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:textColor="#fff"
+            android:layout_width="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="15dp"
+            android:layout_alignParentEnd="true"
+            android:paddingRight="15dp"
+            android:background="@drawable/background_right"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+</RelativeLayout>

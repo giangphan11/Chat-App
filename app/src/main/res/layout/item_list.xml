@@ -9,7 +9,7 @@
     android:layout_marginRight="15dp"
     android:layout_marginTop="5dp"
     android:layout_marginBottom="10dp"
-    app:cardBackgroundColor="#dcdde1"
+    app:cardBackgroundColor="#6c5ce7"
     android:layout_width="match_parent"
     android:layout_height="100dp">
     <LinearLayout
@@ -30,7 +30,7 @@
             android:textSize="36dp"
             android:layout_marginLeft="30dp"
             android:fontFamily="sans-serif-condensed-medium"
-            android:textColor="#8c7ae6"
+            android:textColor="#dfe6e9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>

@@ -81,7 +81,7 @@ public class FriendFragment extends Fragment implements IEventsRecycler {
     @Override
     public void onItemClick(int position) {
         Intent intent=new Intent(getContext(), ChatActivity.class);
-        intent.putExtra("user",mData.get(position));
+        intent.putExtra("userId",mData.get(position).getId());
         startActivity(intent);
     }
 

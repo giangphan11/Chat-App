@@ -2,7 +2,7 @@ package phanbagiang.com.chatapp.model;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class User {
     private String id;
     private String image;
     private String name;
