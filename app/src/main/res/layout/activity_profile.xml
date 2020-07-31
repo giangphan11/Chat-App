@@ -10,6 +10,7 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar_custom"/>
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cad_profile"
         android:layout_below="@id/toolbar"
         app:cardCornerRadius="9dp"
         app:cardBackgroundColor="#8e44ad"
@@ -39,4 +40,21 @@
                 android:layout_height="wrap_content"/>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/profile_btnUpdate"
+        android:text="Update profile"
+        android:inputType="text"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="30dp"
+        android:backgroundTint="#2c2c54"
+        android:paddingRight="30dp"
+        app:cornerRadius="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </RelativeLayout>

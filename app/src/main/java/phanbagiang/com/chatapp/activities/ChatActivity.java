@@ -94,8 +94,9 @@ public class ChatActivity extends AppCompatActivity {
     }
     private void readSMS(final String ngNhan, final String ngGui,final String imgUrl){
         mData=new ArrayList<>();
-        chatAdapter=new ChatAdapter(getApplicationContext(),mData,imgUrl);
-        listChat.setAdapter(chatAdapter);
+        //
+
+        //
         reference=FirebaseDatabase.getInstance().getReference("chats");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -109,7 +110,15 @@ public class ChatActivity extends AppCompatActivity {
                         //Log.e(TAG, "onDataChange: "+chat.getMessage() );
                     }
                 }
-                chatAdapter.notifyDataSetChanged();
+                chatAdapter=new ChatAdapter(getApplicationContext(),mData,imgUrl);
+                listChat.setAdapter(chatAdapter);
+                //
+                listChat.setHasFixedSize(true);
+                LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getApplicationContext());
+                linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
+                linearLayoutManager.setStackFromEnd(true);
+                listChat.setLayoutManager(linearLayoutManager);
+                //chatAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -120,10 +129,14 @@ public class ChatActivity extends AppCompatActivity {
     }
     private void addControls(){
         listChat=findViewById(R.id.list_message);
+        /*
         listChat.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getApplicationContext());
+        linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         linearLayoutManager.setStackFromEnd(true);
         listChat.setLayoutManager(linearLayoutManager);
+
+         */
 
         Intent intent=getIntent();
         circleImageView=findViewById(R.id.imgUser);

@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Adapter;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -94,6 +95,12 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user=dataSnapshot.getValue(User.class);
                 txtUsername.setText(user.getName());
+                if(user.getImage().equals("default")){
+                    imgUser.setImageResource(R.mipmap.ic_launcher);
+                }
+                else{
+                    Glide.with(getApplicationContext()).load(user.getImage()).into(imgUser);
+                }
             }
 
             @Override
