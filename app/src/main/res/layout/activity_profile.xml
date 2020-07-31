@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,5 +9,34 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar_custom"/>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.card.MaterialCardView
+        android:layout_below="@id/toolbar"
+        app:cardCornerRadius="9dp"
+        app:cardBackgroundColor="#8e44ad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:src="@mipmap/ic_launcher"
+                android:layout_gravity="center"
+                android:layout_width="80dp"
+                android:layout_margin="10dp"
+                android:layout_height="80dp"/>
+            <TextView
+                android:id="@+id/profile_name"
+                android:text="Phan Ba Giang"
+                android:textSize="18sp"
+                android:textColor="#fff"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</RelativeLayout>
