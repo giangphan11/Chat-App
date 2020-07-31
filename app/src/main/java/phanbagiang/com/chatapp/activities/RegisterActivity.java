@@ -92,7 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
                     showMessage("createUserWithEmail:success");
                     FirebaseUser user=firebaseAuth.getCurrentUser();
 
-                    updateUser(user,userName);
+                    //updateUser(user,userName);
 
                     String id=user.getUid();
                     HashMap<String,String>hashMap=new HashMap<>();

@@ -13,6 +13,7 @@
     <TextView
         android:layout_marginLeft="10dp"
         android:id="@+id/txtChat"
+        android:textSize="18sp"
         android:paddingTop="10dp"
         android:textColor="#be2edd"
         android:fontFamily="sans-serif-condensed-medium"

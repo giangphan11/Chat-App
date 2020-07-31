@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activities.ProfileActivity"></activity>
         <activity android:name=".activities.WellcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,9 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.ChatActivity" />
-        <activity android:name=".activities.StartActivity">
-
-        </activity>
+        <activity android:name=".activities.StartActivity"></activity>
         <activity
             android:name=".activities.LoginActivity"
             android:parentActivityName=".activities.StartActivity" />

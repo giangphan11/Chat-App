@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Adapter;
 import android.widget.TextView;
 
@@ -58,9 +59,18 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         addControls();
+        addEvents();
 
     }
-
+    private void addEvents(){
+        imgUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 
     private void addControls(){
 
