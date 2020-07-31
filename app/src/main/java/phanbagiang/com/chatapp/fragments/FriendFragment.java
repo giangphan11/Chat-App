@@ -49,7 +49,7 @@ public class FriendFragment extends Fragment implements IEventsRecycler {
         super.onViewCreated(view, savedInstanceState);
         recyclerView=view.findViewById(R.id.list_user);
         mData=new ArrayList<>();
-        adapter=new UserAdapter(getContext(),mData,this);
+        adapter=new UserAdapter(getContext(),mData,false,this);
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));

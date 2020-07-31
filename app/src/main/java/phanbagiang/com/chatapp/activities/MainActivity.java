@@ -29,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     DatabaseReference mReference;
+    FirebaseUser mUser;
 
     TabLayout tabLayout;
     ViewPager viewPager;
@@ -79,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         txtUsername=findViewById(R.id.txtUserName);
 
         mReference=FirebaseDatabase.getInstance().getReference("users");
-
+        mUser=FirebaseAuth.getInstance().getCurrentUser();
         tabLayout=findViewById(R.id.tabLayout);
         viewPager=findViewById(R.id.viewpager);
 
@@ -153,9 +155,29 @@ public class MainActivity extends AppCompatActivity {
             case R.id.mnuLogout:
                 FirebaseAuth.getInstance().signOut();
                 Intent intent=new Intent(MainActivity.this,StartActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
-                break;
+                return true;
         }
-        return super.onOptionsItemSelected(item);
+        return false;
     }
+    private void setStatus(String status){
+        HashMap<String, Object>hashMap=new HashMap<>();
+        hashMap.put("status",status);
+        mReference.child(mUser.getUid()).updateChildren(hashMap);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setStatus("online");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        setStatus("offline");
+    }
+
+
 }

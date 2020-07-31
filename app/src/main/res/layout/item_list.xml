@@ -12,8 +12,7 @@
     app:cardBackgroundColor="#6c5ce7"
     android:layout_width="match_parent"
     android:layout_height="100dp">
-    <LinearLayout
-        android:orientation="horizontal"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <de.hdodenhof.circleimageview.CircleImageView
@@ -21,6 +20,7 @@
             android:layout_width="64dp"
             android:src="@mipmap/ic_launcher"
             android:layout_gravity="center"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="30dp"
             android:layout_height="64dp"/>
         <TextView
@@ -28,10 +28,32 @@
             android:layout_gravity="center"
             android:text="Bonz"
             android:textSize="36dp"
+            android:layout_toRightOf="@id/list_image"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="30dp"
             android:fontFamily="sans-serif-condensed-medium"
             android:textColor="#dfe6e9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-    </LinearLayout>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_on"
+            android:layout_width="24dp"
+            app:civ_border_width="12dp"
+            app:civ_border_color="#55efc4"
+            android:visibility="gone"
+            android:src="@mipmap/ic_launcher"
+            android:layout_alignBottom="@id/list_image"
+            android:layout_alignRight="@id/list_image"
+            android:layout_height="24dp"/>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_off"
+            android:layout_width="24dp"
+            app:civ_border_width="12dp"
+            app:civ_border_color="#b2bec3"
+            android:visibility="gone"
+            android:src="@mipmap/ic_launcher"
+            android:layout_alignBottom="@id/list_image"
+            android:layout_alignRight="@id/list_image"
+            android:layout_height="24dp"/>
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>

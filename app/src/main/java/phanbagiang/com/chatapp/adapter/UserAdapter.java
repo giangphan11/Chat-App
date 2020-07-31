@@ -21,11 +21,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     Context context;
     List<User>mData;
     IEventsRecycler iEventsRecycler;
+    private boolean isChat;
 
-    public UserAdapter(Context context, List<User> mData, IEventsRecycler iEventsRecycler) {
+    public UserAdapter(Context context, List<User> mData,boolean isChat, IEventsRecycler iEventsRecycler) {
         this.context = context;
         this.mData = mData;
         this.iEventsRecycler=iEventsRecycler;
+        this.isChat=isChat;
+
     }
 
     @NonNull
@@ -47,6 +50,21 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                     .load(user.getImage())
                     .into(holder.img);
         }
+
+        if(isChat){
+            if(user.getStatus().equals("online")){
+                holder.img_on.setVisibility(View.VISIBLE);
+                holder.img_off.setVisibility(View.GONE);
+            }
+            else{
+                holder.img_on.setVisibility(View.GONE);
+                holder.img_off.setVisibility(View.VISIBLE);
+            }
+        }
+        else{
+            holder.img_on.setVisibility(View.GONE);
+            holder.img_off.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -58,10 +76,16 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         CircleImageView img;
         TextView txtName;
 
+        CircleImageView img_on;
+        CircleImageView img_off;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             img=itemView.findViewById(R.id.list_image);
             txtName=itemView.findViewById(R.id.list_name);
+            img_on=itemView.findViewById(R.id.img_on);
+            img_off=itemView.findViewById(R.id.img_off);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

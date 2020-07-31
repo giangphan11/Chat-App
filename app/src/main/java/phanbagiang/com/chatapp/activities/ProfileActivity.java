@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +49,7 @@ import phanbagiang.com.chatapp.model.User;
 
 public class ProfileActivity extends AppCompatActivity {
     Toolbar toolbar;
+    ProgressBar progressBar;
     CircleImageView image;
     TextView txtname;
     MaterialButton btnUpdate;
@@ -92,11 +94,15 @@ public class ProfileActivity extends AppCompatActivity {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnUpdate.setVisibility(View.INVISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
                 if(uriPictureSelected!=null){
                     uploadImage();
                 }
                 else{
                     showMessage("please select an image from device!");
+                    btnUpdate.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
             }
         });
@@ -105,9 +111,6 @@ public class ProfileActivity extends AppCompatActivity {
         Toast.makeText(this, mess, Toast.LENGTH_LONG).show();
     }
     private void uploadImage(){
-        //final ProgressDialog progressDialog=new ProgressDialog(getApplicationContext());
-        //progressDialog.setTitle("Uploading...");
-        //progressDialog.show();
         final StorageReference storageReference1=storageReference.child(System.currentTimeMillis()
             +"."+getFileExtension(uriPictureSelected));
         uploadTask=storageReference1.putFile(uriPictureSelected);
@@ -128,18 +131,21 @@ public class ProfileActivity extends AppCompatActivity {
                     HashMap<String,Object>hashMap=new HashMap<>();
                     hashMap.put("image",link_image);
                     mReference.child(mUser.getUid()).updateChildren(hashMap);
-                   // progressDialog.dismiss();
+                    progressBar.setVisibility(View.INVISIBLE);
+                    btnUpdate.setVisibility(View.INVISIBLE);
                 }
                 else{
                     showMessage(task.getException().getMessage());
-                    //progressDialog.dismiss();
+                    btnUpdate.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 showMessage(e.getMessage());
-                //progressDialog.dismiss();
+                btnUpdate.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.INVISIBLE);
             }
         });
     }
@@ -194,7 +200,13 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void addControls(){
+        progressBar=findViewById(R.id.progressBar3);
         btnUpdate=findViewById(R.id.profile_btnUpdate);
+
+        //
+        btnUpdate.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.INVISIBLE);
+
         image=findViewById(R.id.profile_image);
         txtname=findViewById(R.id.profile_name);
         mUser= FirebaseAuth.getInstance().getCurrentUser();

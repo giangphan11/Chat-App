@@ -7,15 +7,17 @@ public class User {
     private String image;
     private String name;
     private String mail;
+    private String status;
 
     public User() {
     }
 
-    public User(String id, String image, String name, String mail) {
+    public User(String id, String image, String name, String mail, String status) {
         this.id = id;
         this.image = image;
         this.name = name;
         this.mail = mail;
+        this.status = status;
     }
 
     public String getId() {
@@ -48,5 +50,13 @@ public class User {
 
     public void setMail(String mail) {
         this.mail = mail;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

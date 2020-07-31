@@ -60,7 +60,6 @@ public class ChatFragment extends Fragment implements IEventsRecycler {
     }
 
     private void addEvents() {
-
         mReference.child("chats").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -127,7 +126,7 @@ public class ChatFragment extends Fragment implements IEventsRecycler {
         mUser= FirebaseAuth.getInstance().getCurrentUser();
 
         mData=new ArrayList<>();
-        adapter=new UserAdapter(getContext(),mData,this);
+        adapter=new UserAdapter(getContext(),mData,true,this);
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));

@@ -62,7 +62,9 @@ public class ChatActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent=new Intent(ChatActivity.this,MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
         });
         addControls();
@@ -83,6 +85,14 @@ public class ChatActivity extends AppCompatActivity {
                 chat_sms.setText("");
             }
         });
+        circleImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(ChatActivity.this,UserActivity.class);
+                intent.putExtra("userId",receiverId);
+                startActivity(intent);
+            }
+        });
     }
     private void sendMessage(String sms, String sender, String receiver){
         DatabaseReference reference2=FirebaseDatabase.getInstance().getReference();
@@ -99,6 +109,7 @@ public class ChatActivity extends AppCompatActivity {
         //
         reference=FirebaseDatabase.getInstance().getReference("chats");
         reference.addValueEventListener(new ValueEventListener() {
+        //reference.child(ngGui+ngNhan).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mData.clear();
@@ -129,14 +140,7 @@ public class ChatActivity extends AppCompatActivity {
     }
     private void addControls(){
         listChat=findViewById(R.id.list_message);
-        /*
-        listChat.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getApplicationContext());
-        linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
-        linearLayoutManager.setStackFromEnd(true);
-        listChat.setLayoutManager(linearLayoutManager);
 
-         */
 
         Intent intent=getIntent();
         circleImageView=findViewById(R.id.imgUser);
@@ -157,7 +161,7 @@ public class ChatActivity extends AppCompatActivity {
                     circleImageView.setImageResource(R.mipmap.ic_launcher);
                 }
                 else{
-                    Glide.with(ChatActivity.this).load(user.getImage()).into(circleImageView);
+                    Glide.with(getApplicationContext()).load(user.getImage()).into(circleImageView);
                 }
                 readSMS(user.getId(),FirebaseAuth.getInstance().getUid(),user.getImage());
                 //
@@ -170,5 +174,24 @@ public class ChatActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void setStatus(String status){
+        HashMap<String, Object>hashMap=new HashMap<>();
+        hashMap.put("status",status);
+        DatabaseReference reference1=FirebaseDatabase.getInstance().getReference("users");
+        reference1.child(FirebaseAuth.getInstance().getUid()).updateChildren(hashMap);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setStatus("online");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        setStatus("offline");
     }
 }
